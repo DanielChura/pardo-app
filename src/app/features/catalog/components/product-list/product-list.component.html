@@ -1,0 +1,78 @@
+<section id="collection" class="bg-[#f8f8f7] py-24 md:py-32 px-6 md:px-10 lg:px-16">
+  <!-- Intro de la Colección (Más compacto para 4 columnas) -->
+  <div
+    class="max-w-[1700px] mx-auto mb-20 flex flex-col md:flex-row justify-between items-end gap-8"
+  >
+    <div>
+      <h2 class="serif text-5xl md:text-7xl tracking-tighter leading-none mb-4">The Collection.</h2>
+      <p class="text-[10px] uppercase tracking-[0.4em] text-gray-400 font-bold">
+        Handcrafted Excellence
+      </p>
+    </div>
+    <div class="max-w-xs">
+      <p class="text-sm text-gray-500 leading-relaxed italic border-l border-black/10 pl-6">
+        Architectural silhouettes meet the noble textures of solid wood.
+      </p>
+    </div>
+  </div>
+
+  <!-- Grid de 4 Columnas (Standard Ecommerce Luxury) -->
+  <div
+    class="max-w-[1700px] mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-6 gap-y-16"
+  >
+    @for (bed of beds; track bed.id) {
+      <div class="group cursor-pointer flex flex-col" (click)="goToDetail(bed.id)">
+        <!-- Contenedor de Imagen (Aspect Ratio 1:1 o 4:5 para 4 columnas) -->
+        <div
+          class="relative overflow-hidden bg-white aspect-[4/5] mb-6 rounded-sm transition-all duration-700"
+        >
+          <img
+            [src]="bed.imageUrl"
+            [alt]="bed.name"
+            class="w-full h-full object-cover grayscale-[10%] group-hover:grayscale-0 group-hover:scale-105 transition-all duration-1000 ease-out"
+          />
+
+          <!-- Overlay sutil -->
+          <div
+            class="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-colors duration-700"
+          ></div>
+        </div>
+
+        <!-- Miniaturas de Maderas (Wood Swatches) -->
+        <div class="flex gap-1.5 mb-4 px-1">
+          @for (variant of bed.variants; track variant.id) {
+            <div
+              class="w-5 h-5 rounded-full border border-black/5 overflow-hidden shadow-inner ring-1 ring-transparent group-hover:ring-black/10 transition-all"
+              [title]="variant.wood.name"
+            >
+              <img
+                [src]="variant.wood.imageUrl || 'assets/no-texture.jpg'"
+                class="w-full h-full object-cover scale-125"
+                [alt]="variant.wood.name"
+              />
+            </div>
+          }
+        </div>
+
+        <!-- Detalles del Producto -->
+        <div class="flex flex-col space-y-1 px-1 border-t border-black/5 pt-4">
+          <div class="flex justify-between items-baseline">
+            <h3 class="serif text-3xl font-medium tracking-tighter">{{ bed.name }}</h3>
+            <span class="text-lg font-light tracking-tighter text-gray-800">
+              ${{ calculateMinPrice(bed) }}
+            </span>
+          </div>
+
+          <div class="flex justify-between items-center">
+            <p class="text-[9px] uppercase tracking-[0.2em] text-gray-400 font-semibold">
+              Starts at
+            </p>
+            <p class="text-[9px] uppercase tracking-[0.2em] text-gray-400 font-medium">
+              {{ bed.variants.length }} Finishes
+            </p>
+          </div>
+        </div>
+      </div>
+    }
+  </div>
+</section>

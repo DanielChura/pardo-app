@@ -1,0 +1,80 @@
+<section class="min-h-screen bg-[#fbfbfd] flex items-center justify-center px-6">
+  
+  <div class="max-w-md w-full">
+    <!-- Branding -->
+    <header class="text-center mb-16">
+      <h2 class="serif text-5xl tracking-tighter mb-4 italic">Join Pardo.</h2>
+      <p class="text-[10px] uppercase tracking-[0.3em] text-gray-400 font-bold italic">Start your private collection</p>
+    </header>
+
+    @if (!isSuccess()) {
+      <form (submit)="onRegister()" class="space-y-10 animate-in fade-in slide-in-from-bottom-4 duration-700">
+        
+        <!-- Input Email -->
+        <div class="relative border-b border-black/10 focus-within:border-black transition-all duration-500">
+          <label class="block text-[9px] uppercase tracking-widest text-gray-400 mb-2 font-bold">Email Address</label>
+          <input 
+            type="email" 
+            [(ngModel)]="email" 
+            name="email"
+            class="w-full bg-transparent py-3 outline-none text-lg font-light tracking-tight italic"
+            placeholder="your@email.com"
+            required>
+        </div>
+
+        <!-- Input Password -->
+        <div class="relative border-b border-black/10 focus-within:border-black transition-all duration-500">
+          <label class="block text-[9px] uppercase tracking-widest text-gray-400 mb-2 font-bold">Choose Password</label>
+          <input 
+            type="password" 
+            [(ngModel)]="password" 
+            name="password"
+            class="w-full bg-transparent py-3 outline-none text-lg font-light tracking-tight italic"
+            placeholder="••••••••"
+            required>
+        </div>
+
+        @if (errorMessage()) {
+          <p class="text-[10px] text-red-500 uppercase tracking-widest text-center animate-pulse">
+            {{ errorMessage() }}
+          </p>
+        }
+
+        <!-- Acciones -->
+        <div class="pt-6 space-y-6">
+          <button 
+            type="submit" 
+            [disabled]="isLoading()"
+            class="w-full bg-black text-white py-5 rounded-full text-[10px] uppercase tracking-[0.3em] font-bold hover:bg-gray-800 transition-all active:scale-95 disabled:opacity-30">
+            {{ isLoading() ? 'Creating Profile...' : 'Create Account' }}
+          </button>
+
+          <div class="text-center">
+            <a routerLink="/login" class="text-[10px] uppercase tracking-widest text-gray-400 hover:text-black transition-colors border-b border-transparent hover:border-black pb-1">
+              Already have an account?
+            </a>
+          </div>
+        </div>
+      </form>
+    } @else {
+      <!-- Pantalla de Éxito Minimalista -->
+      <div class="text-center py-20 animate-in zoom-in fade-in duration-1000">
+        <div class="mb-8 flex justify-center">
+          <div class="w-16 h-16 border border-black rounded-full flex items-center justify-center">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M5 13l4 4L19 7" />
+            </svg>
+          </div>
+        </div>
+        <h3 class="serif text-3xl mb-4 italic">Welcome to the family.</h3>
+        <p class="text-[10px] uppercase tracking-[0.3em] text-gray-400">Redirecting to access your collection...</p>
+      </div>
+    }
+
+  </div>
+
+  <!-- Footer Decorativo -->
+  <footer class="fixed bottom-10 text-[9px] text-gray-300 uppercase tracking-[0.5em]">
+    Pardo — Mastercraft for pets
+  </footer>
+</section>

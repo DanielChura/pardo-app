@@ -1,0 +1,117 @@
+<section class="min-h-screen bg-[#fbfbfd] pt-32 pb-20 px-6 md:px-12 lg:px-24">
+  <div class="max-w-7xl mx-auto">
+    <!-- Header de la Bolsa -->
+    <header class="flex justify-between items-end border-b border-black/10 pb-12 mb-16">
+      <div>
+        <span class="text-[10px] uppercase tracking-[0.4em] text-gray-400 font-bold mb-4 block"
+          >Your Selection</span
+        >
+        <h1 class="serif text-6xl md:text-8xl tracking-tighter">Collection.</h1>
+      </div>
+      <p class="text-sm text-gray-400 font-medium uppercase tracking-widest">
+        {{ cartStore.count() }} {{ cartStore.count() === 1 ? 'Piece' : 'Pieces' }}
+      </p>
+    </header>
+
+    @if (cartStore.items().length > 0) {
+      <!-- Listado de Productos -->
+      <div class="space-y-12">
+        @for (item of cartStore.items(); track item.id) {
+          <div
+            class="flex flex-col md:flex-row gap-8 md:gap-16 py-8 border-b border-black/[0.05] animate-fade-in"
+          >
+            <!-- Imagen -->
+            <div class="w-full md:w-64 aspect-[4/5] bg-white rounded-3xl overflow-hidden shadow-sm">
+              <img [src]="item.image" class="w-full h-full object-cover" />
+            </div>
+
+            <!-- Información y Controles -->
+            <div class="flex-grow flex flex-col justify-between">
+              <div class="flex justify-between items-start">
+                <div>
+                  <h2 class="serif text-4xl mb-2 tracking-tighter">{{ item.name }}</h2>
+                  <p class="text-xs uppercase tracking-[0.2em] text-gray-400 font-semibold">
+                    Finish: {{ item.woodName }} / Fabric: {{ item.fabricName }}
+                  </p>
+                </div>
+                <p class="text-2xl font-light tracking-tighter leading-none">
+                  {{ item.price | currency }}
+                </p>
+              </div>
+
+              <!-- Acciones Inferiores -->
+              <div class="flex justify-between items-center mt-12 md:mt-0">
+                <div class="flex items-center gap-8">
+                  <!-- Control de Cantidad Minimalista -->
+                  <div class="flex items-center border-b border-black/20 pb-1">
+                    <span class="text-[10px] uppercase tracking-widest text-gray-400 mr-4"
+                      >Quantity</span
+                    >
+                    <input
+                      type="number"
+                      [value]="item.quantity"
+                      (input)="onQuantityChange(item.id, $event)"
+                      class="bg-transparent w-10 text-center outline-none text-lg font-medium"
+                    />
+                  </div>
+
+                  <!-- Botón Eliminar -->
+                  <button
+                    (click)="remove(item.id)"
+                    class="text-[10px] uppercase tracking-[0.2em] text-red-400 hover:text-red-600 font-bold transition-colors"
+                  >
+                    Remove
+                  </button>
+                </div>
+
+                <div class="text-right">
+                  <p class="text-[9px] uppercase tracking-widest text-gray-400">Subtotal</p>
+                  <p class="text-xl font-medium tracking-tighter">
+                    {{ item.price * item.quantity | currency }}
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        }
+      </div>
+
+      <!-- Resumen de Compra -->
+      <footer class="mt-24 flex flex-col md:flex-row justify-between items-start gap-12">
+        <div class="max-w-xs">
+          <p class="text-xs text-gray-400 leading-relaxed uppercase tracking-widest">
+            Every piece is made to order. Our master craftsmen will begin production immediately
+            after confirmation.
+          </p>
+        </div>
+
+        <div class="w-full md:w-96 space-y-8">
+          <div class="flex justify-between items-end border-b border-black/10 pb-6">
+            <span class="serif text-3xl tracking-tighter">Total</span>
+            <span class="text-5xl font-light tracking-tighter italic">{{
+              cartStore.total() | currency
+            }}</span>
+          </div>
+
+          <button
+            routerLink="/checkout"
+            class="w-full bg-black text-white py-6 rounded-full text-xs uppercase tracking-[0.3em] font-bold hover:scale-[1.02] active:scale-95 transition-all shadow-2xl"
+          >
+            Proceed to Shipping
+          </button>
+        </div>
+      </footer>
+    } @else {
+      <!-- Estado Vacío -->
+      <div class="py-40 text-center">
+        <p class="serif text-4xl text-gray-300 mb-10">Your collection is currently empty.</p>
+        <a
+          routerLink="/"
+          class="text-xs uppercase tracking-widest font-bold border-b border-black pb-2 hover:text-gray-400 hover:border-gray-400 transition"
+        >
+          Return to Gallery
+        </a>
+      </div>
+    }
+  </div>
+</section>

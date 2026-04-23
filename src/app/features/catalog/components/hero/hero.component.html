@@ -1,0 +1,32 @@
+<section
+  class="relative h-screen w-full overflow-hidden flex items-center justify-center bg-[#1a1a1a]"
+>
+  <!-- Fondo con imagen estática de alto impacto -->
+  <div class="absolute inset-0 z-0">
+    <img
+      src="https://images.unsplash.com/photo-1541336032412-2048a678540d?q=80&w=2574&auto=format&fit=crop"
+      class="w-full h-full object-cover opacity-60 scale-105"
+      alt="Luxury Interior"
+    />
+  </div>
+
+  <!-- Contenido de Texto -->
+  <div class="relative z-10 text-center text-white px-6">
+    <span class="block uppercase tracking-[0.5em] text-[10px] mb-6 animate-pulse">
+      Handcrafted in Spain
+    </span>
+    <h1 class="serif text-[18vw] md:text-[12vw] leading-[0.8] mb-8 tracking-tighter italic">
+      Pure Rest.
+    </h1>
+    <p class="max-w-md mx-auto text-sm md:text-base font-light tracking-wide text-gray-300 mb-10">
+      Architecture for the modern companion. Defined by minimalist lines and noble materials.
+    </p>
+    <button (click)="scroll()" class="group flex flex-col items-center mx-auto space-y-4">
+      <span
+        class="text-[9px] uppercase tracking-widest text-gray-400 group-hover:text-white transition-colors"
+        >Discover</span
+      >
+      <div class="w-[1px] h-12 bg-white/30 group-hover:h-20 transition-all duration-700"></div>
+    </button>
+  </div>
+</section>

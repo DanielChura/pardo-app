@@ -8,3 +8,33 @@
 .no-scrollbar::-webkit-scrollbar {
   display: none;
 }
+
+:host {
+  --bg-color: #f8f8f7;
+  --text-main: #1a1a1a;
+  --text-muted: #666;
+  --accent: #000;
+  display: block;
+  background-color: var(--bg-color);
+  color: var(--text-main);
+  font-family: 'Inter', sans-serif;
+}
+
+.serif {
+  font-family: 'Playfair Display', serif;
+}
+
+.hero-image {
+  clip-path: inset(0 0 0 0);
+  transition: clip-path 1.5s cubic-bezier(0.19, 1, 0.22, 1);
+  &.loading {
+    clip-path: inset(100% 0 0 0);
+  }
+}
+
+.product-card {
+  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  &:hover {
+    transform: translateY(-10px);
+  }
+}

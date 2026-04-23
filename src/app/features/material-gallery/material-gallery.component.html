@@ -1,0 +1,43 @@
+<section class="py-32 bg-white">
+  <div class="max-w-[1600px] mx-auto px-10">
+    <div class="flex flex-col md:flex-row justify-between items-start mb-20 gap-8">
+      <div class="max-w-md">
+        <span class="text-[10px] uppercase tracking-[0.4em] text-gray-400 mb-4 block"
+          >Noble Materials</span
+        >
+        <h2 class="serif text-5xl tracking-tighter italic">The Finishes.</h2>
+      </div>
+      <p class="text-sm text-gray-500 max-w-xs leading-relaxed font-light">
+        Each wood is selected for its unique grain and sustainable origin, then hand-finished with
+        natural oils.
+      </p>
+    </div>
+
+    <!-- Grid de Texturas -->
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8">
+      @for (wood of woods(); track wood.id) {
+        <div class="group cursor-crosshair">
+          <div class="aspect-square overflow-hidden bg-[#f5f5f5] mb-4">
+            @if (wood.imageUrl) {
+              <img
+                [src]="wood.imageUrl"
+                class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-[1.2s] ease-in-out scale-110 group-hover:scale-100"
+              />
+            } @else {
+              <div
+                class="w-full h-full flex items-center justify-center text-[10px] uppercase tracking-widest text-gray-300"
+              >
+                No Texture
+              </div>
+            }
+          </div>
+          <p
+            class="text-[10px] uppercase tracking-widest font-semibold text-center opacity-40 group-hover:opacity-100 transition-opacity"
+          >
+            {{ wood.name }}
+          </p>
+        </div>
+      }
+    </div>
+  </div>
+</section>
