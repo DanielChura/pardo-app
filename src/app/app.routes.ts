@@ -4,6 +4,22 @@ import { authGuard } from './core/guards/auth.guard';
 export const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   {
+    path: 'login',
+    loadComponent: () =>
+      import('./features/auth/login/login.component').then((m) => m.LoginComponent),
+    data: {
+      hideLayout: true,
+    },
+  },
+  {
+    path: 'register',
+    loadComponent: () =>
+      import('./features/auth/register/register.component').then((m) => m.RegisterComponent),
+    data: {
+      hideLayout: true,
+    },
+  },
+  {
     path: 'catalog',
     loadComponent: () =>
       import('./features/catalog/catalog.component').then((m) => m.CatalogComponent),
@@ -32,14 +48,15 @@ export const routes: Routes = [
       import('./features/checkout/success/success.component').then((m) => m.SuccessComponent),
     canActivate: [authGuard],
   },
+
   {
-    path: 'login',
+    path: 'profile',
     loadComponent: () =>
-      import('./features/auth/login/login.component').then((m) => m.LoginComponent),
+      import('./features/profile/profile.component').then((m) => m.ProfileComponent),
+    canActivate: [authGuard],
   },
   {
-    path: 'register',
-    loadComponent: () =>
-      import('./features/auth/register/register.component').then((m) => m.RegisterComponent),
+    path: '**',
+    redirectTo: 'login',
   },
 ];

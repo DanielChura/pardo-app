@@ -1,0 +1,132 @@
+<div
+  class="min-h-screen bg-[#fcfcfc] text-[#121212] font-sans antialiased selection:bg-black selection:text-white"
+>
+  <div class="max-w-6xl mx-auto px-8 py-24">
+    <!-- HEADER: Minimalist Profile -->
+    @if (profile(); as user) {
+      <header class="relative mb-32">
+        <div class="flex flex-col gap-4">
+          <div class="flex items-center gap-3">
+            <span class="w-2 h-2 bg-black rounded-full"></span>
+            <span class="text-[10px] uppercase tracking-[0.4em] font-semibold text-gray-400"
+              >Account Profile</span
+            >
+          </div>
+          <h1 class="text-7xl font-light tracking-[ -0.05em] leading-none lowercase">
+            {{ user.email.split('@')[0] }}<span class="text-neutral-300">_</span>
+          </h1>
+          <div
+            class="flex gap-8 mt-4 text-[11px] uppercase tracking-widest text-gray-500 font-medium"
+          >
+            <span>ID: {{ user.id.substring(0, 8) }}</span>
+            <span>/</span>
+            <span>Role: {{ user.role }}</span>
+            <span>/</span>
+            <span>Since: {{ user.createdAt | date: 'yyyy' }}</span>
+          </div>
+        </div>
+      </header>
+    }
+
+    <!-- SECTION TITLE -->
+    <div class="flex items-end justify-between mb-12 border-b border-neutral-200 pb-6">
+      <h2 class="text-sm uppercase tracking-[0.3em] font-bold">Purchase Archive</h2>
+      <span class="font-mono text-xs text-neutral-400">Total Orders: {{ allOrders().length }}</span>
+    </div>
+
+    <!-- ORDERS LIST -->
+    <div class="flex flex-col gap-16">
+      @for (order of allOrders(); track order.id) {
+        <!-- Individual Order Card -->
+        <div
+          class="group relative bg-white border border-neutral-100 p-8 md:p-12 transition-all duration-500 hover:border-neutral-300 shadow-[0_4px_20px_-15px_rgba(0,0,0,0.05)]"
+        >
+          <!-- Order Top Bar: Metadata -->
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-8 mb-16">
+            <div>
+              <p class="text-[9px] uppercase tracking-[0.2em] text-neutral-400 mb-2 font-bold">
+                Order Reference
+              </p>
+              <p class="font-mono text-xs">#{{ order.id.toUpperCase().substring(0, 12)}}</p>
+            </div>
+            <div>
+              <p class="text-[9px] uppercase tracking-[0.2em] text-neutral-400 mb-2 font-bold">
+                Processed Date
+              </p>
+              <p class="text-sm font-medium">{{ order.createdAt | date: 'MMM dd, yyyy' }}</p>
+            </div>
+            <div>
+              <p class="text-[9px] uppercase tracking-[0.2em] text-neutral-400 mb-2 font-bold">
+                Current Status
+              </p>
+              <div class="flex items-center gap-2">
+                <span class="text-xs font-bold tracking-tighter uppercase italic">{{
+                  order.status
+                }}</span>
+              </div>
+            </div>
+            <div class="text-right">
+              <p class="text-[9px] uppercase tracking-[0.2em] text-neutral-400 mb-2 font-bold">
+                Investment
+              </p>
+              <p class="text-2xl font-light tracking-tighter">
+                {{ order.total | currency: 'USD' : 'symbol' : '1.0-0' }}
+              </p>
+            </div>
+          </div>
+
+          <!-- Order Content: Items -->
+          <div class="border-t border-neutral-50 pt-10">
+            <h3 class="text-[10px] uppercase tracking-[0.2em] text-neutral-300 mb-8 font-bold">
+              Manifest Details
+            </h3>
+
+            <div class="space-y-8">
+              @for (item of order.items; track item.id) {
+                <div
+                  class="flex flex-col md:flex-row md:items-center justify-between gap-4 group/item"
+                >
+                  <div class="flex items-start gap-6">
+                    <span class="text-xs font-mono text-neutral-300 mt-1">0{{ $index + 1 }}</span>
+                    <div>
+                      <p
+                        class="text-lg font-light tracking-tight text-neutral-800 transition-colors group-hover/item:text-black"
+                      >
+                        {{ item.productName }}
+                      </p>
+                      <p class="text-[10px] uppercase tracking-widest text-neutral-400 mt-1">
+                        Specs: {{ item.woodName }} <span class="mx-2 text-neutral-200">|</span>
+                        {{ item.fabricName }}
+                      </p>
+                    </div>
+                  </div>
+                  <div class="flex items-center gap-12 md:text-right">
+                    <div class="hidden md:block">
+                      <p class="text-[9px] uppercase text-neutral-300 tracking-widest mb-1">
+                        Quantity
+                      </p>
+                      <p class="text-sm font-mono">{{ item.quantity }}</p>
+                    </div>
+                    <div>
+                      <p class="text-[9px] uppercase text-neutral-300 tracking-widest mb-1">
+                        Unit Price
+                      </p>
+                      <p class="text-sm font-medium">{{ item.unitTotalPrice | currency }}</p>
+                    </div>
+                  </div>
+                </div>
+              }
+            </div>
+          </div>
+        </div>
+      } @empty {
+        <!-- Empty State sofisticado -->
+        <div class="py-40 text-center border border-dashed border-neutral-200">
+          <p class="text-[10px] uppercase tracking-[0.5em] text-neutral-300 italic">
+            No transactions found in this account
+          </p>
+        </div>
+      }
+    </div>
+  </div>
+</div>

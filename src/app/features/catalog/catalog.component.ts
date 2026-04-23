@@ -13,19 +13,7 @@ import { MaterialGalleryComponent } from '../material-gallery/material-gallery.c
   template: `
     <app-hero />
     <app-product-list [beds]="beds() || []" />
-    <app-material-gallery /> 
-
-    <!-- Footer Minimalista Integrado -->
-    <footer class="py-20 px-10 border-t border-black/5 text-center bg-[#f8f8f7]">
-      <h2 class="serif text-5xl mb-10 tracking-tighter italic">Pardo.</h2>
-      <div
-        class="flex justify-center space-x-12 text-[10px] uppercase tracking-[0.3em] text-gray-400"
-      >
-        <a class="hover:text-black transition-colors cursor-pointer">Instagram</a>
-        <a class="hover:text-black transition-colors cursor-pointer">Archive</a>
-        <a class="hover:text-black transition-colors cursor-pointer">Contact</a>  
-      </div>
-    </footer>
+    <app-material-gallery />
   `,
 })
 export class CatalogComponent {
