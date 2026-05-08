@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
   templateUrl: './hero.component.html',
 })
 export class HeroComponent {
-  scroll() {
+  scrollToCollection() {
     document.getElementById('collection')?.scrollIntoView({ behavior: 'smooth' });
   }
 }

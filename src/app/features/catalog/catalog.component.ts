@@ -4,7 +4,7 @@ import { BedService } from '../../core/api/bed.service';
 import { HeroComponent } from './components/hero/hero.component';
 import { ProductListComponent } from './components/product-list/product-list.component';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { MaterialGalleryComponent } from '../material-gallery/material-gallery.component';
+import { MaterialGalleryComponent } from './components/material-gallery/material-gallery.component';
 
 @Component({
   selector: 'app-catalog',

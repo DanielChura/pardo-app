@@ -36,4 +36,8 @@ export class AuthService {
     const decode: any = jwtDecode(token);
     return decode.id;
   }
+
+  isLoggedIn(): boolean {
+    return !!localStorage.getItem('pardo_token');
+  }
 }

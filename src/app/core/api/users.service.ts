@@ -6,7 +6,7 @@ import { Observable, of } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class UsersService {
-  private readonly apiUrl = 'http://localhost:3000/users';
+  private readonly apiUrl = 'http://localhost:3000/users/me';
   private http = inject(HttpClient);
 
   getProfile(): Observable<UserProfile> {
@@ -16,6 +16,6 @@ export class UsersService {
     }
     const decode: any = jwtDecode(token);
     const userId = decode.id;
-    return this.http.get<UserProfile>(`${this.apiUrl}/${userId}`);
+    return this.http.get<UserProfile>(`${this.apiUrl}`);
   }
 }

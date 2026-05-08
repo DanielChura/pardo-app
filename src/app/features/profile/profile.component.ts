@@ -1,6 +1,4 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
-import { Router } from '@angular/router';
-import { jwtDecode } from 'jwt-decode';
 import { OrderService } from '../../core/api/order.service';
 import { Order } from '../../core/models/order.model';
 import { UserProfile } from '../../core/models/user.model';
@@ -13,9 +11,8 @@ import { CommonModule } from '@angular/common';
   templateUrl: './profile.component.html',
 })
 export class ProfileComponent implements OnInit {
-  private readonly router = inject(Router);
-  private readonly orderService = inject(OrderService);
-  private readonly usersService = inject(UsersService);
+  private orderService = inject(OrderService);
+  private usersService = inject(UsersService);
 
   allOrders = signal<Order[]>([]);
   profile = signal<UserProfile | null>(null);

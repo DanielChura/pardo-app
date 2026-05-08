@@ -1,40 +1,29 @@
 @import 'tailwindcss';
 
-.no-scrollbar {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
+:root {
+  --pardo: #8b5e3c;
+  --font-sans: 'Outfit', sans-serif;
+  --font-serif: 'Playfair Display', serif;
 }
 
-.no-scrollbar::-webkit-scrollbar {
-  display: none;
+* {
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
 }
 
-:host {
-  --bg-color: #f8f8f7;
-  --text-main: #1a1a1a;
-  --text-muted: #666;
-  --accent: #000;
-  display: block;
-  background-color: var(--bg-color);
-  color: var(--text-main);
-  font-family: 'Inter', sans-serif;
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-serif);
 }
 
-.serif {
-  font-family: 'Playfair Display', serif;
+html,
+body {
+  background-color: #fcfcfc;
+  color: #111111;
+  margin: 0;
+  height: 100%;
+  width: 100%;
 }
 
-.hero-image {
-  clip-path: inset(0 0 0 0);
-  transition: clip-path 1.5s cubic-bezier(0.19, 1, 0.22, 1);
-  &.loading {
-    clip-path: inset(100% 0 0 0);
-  }
-}
-
-.product-card {
-  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-  &:hover {
-    transform: translateY(-10px);
-  }
+.bezier-luxury {
+  transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
 }

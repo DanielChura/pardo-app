@@ -20,20 +20,17 @@ export class CheckoutComponent {
   isProcessing = signal(false);
 
   confirmOrder() {
-    // 1. Obtenemos el ID del usuario del servicio de Auth
     const userId = this.authService.getUserId();
 
     if (!userId) {
-      alert('Session expired. Please login again.');
+      alert('Sesión expirada. Por favor inicia sesión.');
       this.router.navigate(['/login']);
       return;
     }
 
     this.isProcessing.set(true);
 
-    // 2. Preparamos el Body exacto que pide tu NestJS
     const orderPayload = {
-      userId: userId,
       items: this.cartStore.items().map((item) => ({
         productVariantId: item.productVariantId,
         fabricId: item.fabricId,
@@ -41,15 +38,14 @@ export class CheckoutComponent {
       })),
     };
 
-    // 3. Enviamos la petición (El interceptor pondrá el Token automáticamente)
     this.http.post('http://localhost:3000/orders', orderPayload).subscribe({
-      next: (res) => {
-        this.cartStore.clear(); // Ahora ya no dará error
-        this.router.navigate(['/success']); // Debes crear esta ruta/componente
+      next: () => {
+        this.cartStore.clear();
+        this.router.navigate(['/success']);
       },
       error: (err) => {
-        console.error('Order error:', err);
-        alert('Transaction failed. Please check your connection or stock.');
+        console.error('Error:', err);
+        alert('Transacción fallida. Verifica tu conexión o stock.');
         this.isProcessing.set(false);
       },
     });

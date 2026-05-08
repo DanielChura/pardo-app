@@ -25,8 +25,8 @@ export class LoginComponent {
       next: () => {
         this.router.navigate(['/catalog']);
       },
-      error: (err) => {
-        this.errorMessage.set('Invalid credentials. Please try again.');
+      error: () => {
+        this.errorMessage.set('Credenciales inválidas');
         this.isLoading.set(false);
       },
     });

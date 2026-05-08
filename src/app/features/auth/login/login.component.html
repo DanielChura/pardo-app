@@ -1,77 +1,81 @@
-<section class="min-h-screen bg-[#fbfbfd] flex items-center justify-center px-6">
-  <div class="max-w-md w-full">
-    <!-- Branding sutil -->
-    <header class="text-center mb-16">
-      <h2 class="serif text-5xl tracking-tighter mb-4 italic">Pardo.</h2>
-      <p class="text-[10px] uppercase tracking-[0.3em] text-gray-400 font-bold">
-        Access your collection
-      </p>
-    </header>
+<main class="min-h-screen bg-[#FFFFFF] flex">
+  <div class="w-full lg:w-1/2 flex items-center p-6 lg:p-8">
+    <div class="w-full max-w-xs mx-auto">
+      <header class="mb-6">
+        <span class="text-[11px] font-medium uppercase tracking-[0.18em]" style="color: var(--pardo);">
+          Iniciar sesión
+        </span>
+        <h1 class="text-[32px] font-normal text-[#111111] leading-[1.15] mt-2" style="font-family: var(--font-serif);">
+          Bienvenido de nuevo
+        </h1>
+      </header>
 
-    <form (submit)="onLogin()" class="space-y-10">
-      <!-- Input Email -->
-      <div
-        class="relative border-b border-black/10 focus-within:border-black transition-colors duration-500"
-      >
-        <label class="block text-[9px] uppercase tracking-widest text-gray-400 mb-2 font-bold"
-          >Email Address</label
-        >
-        <input
-          type="email"
-          [(ngModel)]="email"
-          name="email"
-          class="w-full bg-transparent py-3 outline-none text-lg font-light tracking-tight italic"
-          placeholder="email@luxury.com"
-          required
-        />
-      </div>
+      <form (submit)="onLogin()" class="space-y-5">
+        <div class="flex flex-col gap-1.5">
+          <label for="email" class="text-[11px] uppercase tracking-[0.16em]" style="color: #787774;">Email</label>
+          <input
+            id="email"
+            type="email"
+            [(ngModel)]="email"
+            name="email"
+            class="w-full bg-transparent border-b py-2.5 outline-none text-[16px] text-[#111111] transition-all focus:border-[var(--pardo)]"
+            style="border-color: #EAEAEA;"
+            placeholder="email@pardo.com"
+            required
+          />
+        </div>
 
-      <!-- Input Password -->
-      <div
-        class="relative border-b border-black/10 focus-within:border-black transition-colors duration-500"
-      >
-        <label class="block text-[9px] uppercase tracking-widest text-gray-400 mb-2 font-bold"
-          >Password</label
-        >
-        <input
-          type="password"
-          [(ngModel)]="password"
-          name="password"
-          class="w-full bg-transparent py-3 outline-none text-lg font-light tracking-tight italic"
-          placeholder="••••••••"
-          required
-        />
-      </div>
+        <div class="flex flex-col gap-1.5">
+          <label for="password" class="text-[11px] uppercase tracking-[0.16em]" style="color: #787774;">Contraseña</label>
+          <input
+            id="password"
+            type="password"
+            [(ngModel)]="password"
+            name="password"
+            class="w-full bg-transparent border-b py-2.5 outline-none text-[16px] text-[#111111] transition-all focus:border-[var(--pardo)]"
+            style="border-color: #EAEAEA;"
+            placeholder="••••••••"
+            required
+          />
+        </div>
 
-      <!-- Error Message -->
-      @if (errorMessage()) {
-        <p
-          class="text-[10px] text-red-500 uppercase tracking-widest text-center animate-in fade-in duration-300"
-        >
-          {{ errorMessage() }}
-        </p>
-      }
+        @if (errorMessage()) {
+          <div class="py-1" style="color: #9F2F2D;">
+            <span class="text-[12px]">{{ errorMessage() }}</span>
+          </div>
+        }
 
-      <!-- Acciones -->
-      <div class="pt-6 space-y-6">
         <button
-          (click)="onLogin()"
           type="submit"
           [disabled]="isLoading()"
-          class="w-full bg-black text-white py-5 rounded-full text-[10px] uppercase tracking-[0.3em] font-bold hover:bg-gray-800 transition-all active:scale-95 disabled:opacity-30"
+          class="w-full py-3 text-[12px] font-medium uppercase tracking-[0.18em] bg-[#111111] text-white hover:bg-[var(--pardo)] transition-all duration-300 disabled:opacity-40 cursor-pointer"
+          style="border-radius: 8px;"
         >
-          {{ isLoading() ? 'Verifying...' : 'Sign In' }}
+          {{ isLoading() ? 'Verificando...' : 'Iniciar sesión' }}
         </button>
 
-        <div class="text-center">
-          <a
-            routerLink="/register"
-            class="text-[10px] uppercase tracking-widest text-gray-400 hover:text-black transition-colors border-b border-transparent hover:border-black pb-1"
-          >
-            Create an account
+        <p class="text-center text-[13px]" style="color: #787774;">
+          ¿No tienes cuenta?
+          <a routerLink="/register" class="text-[#111111] hover:text-[var(--pardo)] transition-colors ml-1 cursor-pointer">
+            Crear cuenta
           </a>
-        </div>
-      </div>
-    </form>
+        </p>
+      </form>
+    </div>
   </div>
-</section>
+
+  <div class="hidden lg:block lg:w-1/2 relative" style="background: #F7F6F3;">
+    <img 
+      src="https://www.shoprooof.com/wp-content/uploads/2025/09/241209_Rooof_Shot_08_Max-S_103_v4_2560-1.jpg.webp" 
+      alt="Interior minimalista" 
+      class="w-full h-full object-cover"
+      loading="eager"
+    />
+    <div class="absolute bottom-0 left-0 right-0 p-8" style="background: linear-gradient(to top, rgba(0,0,0,0.5) 0%, transparent 100%);">
+      <span class="text-[11px] uppercase tracking-[0.18em] text-white/80">Diseño artesanal</span>
+      <h2 class="text-[28px] font-normal text-white leading-[1.2] mt-1" style="font-family: var(--font-serif);">
+        Muebles diseñados<br />para durar generaciones
+      </h2>
+    </div>
+  </div>
+</main>

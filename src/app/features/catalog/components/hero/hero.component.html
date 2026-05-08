@@ -1,32 +1,28 @@
-<section
-  class="relative h-screen w-full overflow-hidden flex items-center justify-center bg-[#1a1a1a]"
->
-  <!-- Fondo con imagen estática de alto impacto -->
-  <div class="absolute inset-0 z-0">
-    <img
-      src="https://images.unsplash.com/photo-1541336032412-2048a678540d?q=80&w=2574&auto=format&fit=crop"
-      class="w-full h-full object-cover opacity-60 scale-105"
-      alt="Luxury Interior"
-    />
+<section class="w-full min-h-screen bg-[#FFFFFF] pt-40 md:pt-48 pb-12 flex flex-col items-center text-center px-6 md:px-12">
+  <div class="max-w-4xl mx-auto flex flex-col items-center z-10 w-full">
+    <h1 class="text-[48px] md:text-[72px] lg:text-[88px] font-normal text-[#111111] leading-[1.1] tracking-tight" style="font-family: var(--font-serif);">
+      Sculpted for<br />the Modern Space
+    </h1>
+    
+    <p class="mt-8 text-[16px] md:text-[18px] text-[#787774] max-w-2xl leading-relaxed">
+      Descubrir una selección de piezas donde la forma se encuentra con la función absoluta. Diseñadas sin compromiso, fabricadas para generaciones.
+    </p>
+
+    <button 
+      (click)="scrollToCollection()" 
+      class="mt-12 bg-[#111111] text-white px-10 py-4 text-[12px] font-medium uppercase tracking-[0.18em] hover:bg-[var(--pardo)] transition-all duration-300"
+      style="border-radius: 8px;"
+    >
+      Explore
+    </button>
   </div>
 
-  <!-- Contenido de Texto -->
-  <div class="relative z-10 text-center text-white px-6">
-    <span class="block uppercase tracking-[0.5em] text-[10px] mb-6 animate-pulse">
-      Handcrafted in Spain
-    </span>
-    <h1 class="serif text-[18vw] md:text-[12vw] leading-[0.8] mb-8 tracking-tighter italic">
-      Pure Rest.
-    </h1>
-    <p class="max-w-md mx-auto text-sm md:text-base font-light tracking-wide text-gray-300 mb-10">
-      Architecture for the modern companion. Defined by minimalist lines and noble materials.
-    </p>
-    <button (click)="scroll()" class="group flex flex-col items-center mx-auto space-y-4">
-      <span
-        class="text-[9px] uppercase tracking-widest text-gray-400 group-hover:text-white transition-colors"
-        >Discover</span
-      >
-      <div class="w-[1px] h-12 bg-white/30 group-hover:h-20 transition-all duration-700"></div>
-    </button>
+  <div class="mt-20 md:mt-28 w-full max-w-[1400px] aspect-[4/3] md:aspect-[21/9] bg-[#F7F6F3] overflow-hidden" style="border-radius: 16px;">
+    <img 
+      src="https://www.shoprooof.com/wp-content/uploads/2025/09/241209_Rooof_Shot_08_Max-S_103_v4_2560-1.jpg.webp" 
+      class="w-full h-full object-cover"
+      alt="Espacio minimalista"
+      loading="eager"
+    />
   </div>
 </section>

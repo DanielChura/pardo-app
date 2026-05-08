@@ -31,8 +31,8 @@ export class RegisterComponent {
         // Esperamos 2 segundos para que vea el mensaje de éxito antes de redirigir
         setTimeout(() => this.router.navigate(['/login']), 2000);
       },
-      error: (err) => {
-        this.errorMessage.set('Could not create account. Maybe the email is already in use.');
+      error: () => {
+        this.errorMessage.set('No se pudo crear la cuenta. El email ya está en uso.');
         this.isLoading.set(false);
       },
     });
